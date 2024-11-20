@@ -5,14 +5,25 @@ let carrito = [];
 
 // Función para agregar un producto al carrito
 function agregarAlCarrito(producto) {
-    carrito.push(producto);  // Añadir producto al carrito
-    actualizarCarrito();     // Actualizar la vista del carrito
+    // Verificamos si el producto ya existe en el carrito
+    const productoExistente = carrito.find(item => item.id === producto.id);
+
+    if (productoExistente) {
+        // Si el producto ya existe, incrementamos la cantidad
+        productoExistente.cantidad += 1;
+    } else {
+        // Si el producto no existe, lo agregamos con cantidad 1
+        carrito.push({...producto, cantidad: 1});
+    }
+
+    // Actualizamos el carrito en la vista
+    actualizarCarrito();
 }
 
 // Función para actualizar la visualización del carrito
 function actualizarCarrito() {
     const contenedorCarrito = document.getElementById('productos-carrito');
-    contenedorCarrito.innerHTML = '';  // Limpiamos el contenedor
+    contenedorCarrito.innerHTML = '';  // Limpiamos el contenedor del carrito
 
     let total = 0;
     carrito.forEach(producto => {
@@ -22,9 +33,10 @@ function actualizarCarrito() {
             <img src="${producto.imagen}" alt="${producto.nombre}">
             <h4>${producto.nombre}</h4>
             <p>Precio: $${producto.precio.toFixed(2)}</p>
+            <p>Cantidad: ${producto.cantidad}</p>
         `;
         contenedorCarrito.appendChild(divProducto);
-        total += producto.precio;
+        total += producto.precio * producto.cantidad;
     });
 
     // Actualizamos el total del carrito
@@ -32,21 +44,18 @@ function actualizarCarrito() {
     totalPrecio.textContent = total.toFixed(2);
 }
 
-// Escuchamos el evento de clic en los botones "Añadir al carrito"
+// Función que se ejecuta cuando se hace clic en "Añadir al carrito"
 document.addEventListener('click', function(event) {
-    // Verificamos que el clic fue en un botón con clase 'btn-add-to-cart'
     if (event.target && event.target.classList.contains('btn-add-to-cart')) {
-        // Encontramos el producto correspondiente
         const productoElement = event.target.closest('.producto');
         
-        // Obtenemos la información del producto (nombre, precio, imagen)
         const producto = {
+            id: productoElement.getAttribute('data-id'), // Usamos un atributo "data-id" para identificar el producto
             nombre: productoElement.querySelector('h4').textContent,
             precio: parseFloat(productoElement.querySelector('p').textContent.replace('Precio: $', '')),
             imagen: productoElement.querySelector('img').src
         };
 
-        // Agregamos el producto al carrito
         agregarAlCarrito(producto);
     }
 });
@@ -57,6 +66,7 @@ function mostrarProductosDestacados() {
     productosDestacados.forEach(producto => {
         const divProducto = document.createElement('div');
         divProducto.classList.add('producto');
+        divProducto.setAttribute('data-id', producto.id);  // Usamos un atributo para identificar el producto
         divProducto.innerHTML = `
             <img src="${producto.imagen}" alt="${producto.nombre}">
             <h4>${producto.nombre}</h4>
@@ -78,6 +88,7 @@ function mostrarCategorias() {
         categoria.productos.forEach(producto => {
             const divProducto = document.createElement('div');
             divProducto.classList.add('producto');
+            divProducto.setAttribute('data-id', producto.id);  // Usamos un atributo para identificar el producto
             divProducto.innerHTML = `
                 <img src="${producto.imagen}" alt="${producto.nombre}">
                 <h4>${producto.nombre}</h4>
