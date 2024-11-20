@@ -3,35 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Online</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <title>Tienda en Línea</title>
 </head>
 <body>
     <header>
-        <h1>Tienda Online</h1>
-        <div>
-            <button id="carrito-btn">
-                Carrito (<span id="carrito-count">0</span> productos)
-            </button>
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo de la Tienda">
+            <h1>Tienda en Línea</h1>
         </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="categorias.html">Categorías</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="carrito.html" id="carrito-link">Carrito (<span id="carrito-count">0</span>)</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Sección de productos destacados -->
-    <section id="productos-destacados">
+    <main>
         <h2>Productos Destacados</h2>
-        <!-- Los productos destacados se agregarán aquí dinámicamente -->
-    </section>
-
-    <!-- Sección de categorías de productos -->
-    <section id="categorias">
-        <h2>Categorías</h2>
-        <!-- Las categorías se agregarán aquí dinámicamente -->
-    </section>
+        <div id="productos-destacados" class="productos"></div>
+    </main>
 
     <footer>
-        <p>&copy; 2024 Tu Tienda Online</p>
+        <p>&copy; 2023 Tienda en Línea. Todos los derechos reservados.</p>
     </footer>
-
-    <script src="scripts.js"></script>
 </body>
 </html>
