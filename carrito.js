@@ -1,6 +1,6 @@
 // Carrito global (persistente en localStorage)
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];  // Obtener el carrito desde localStorage o inicializar vacío
- 
+
 // Función para agregar un producto al carrito
 function addToCart(id, nombre, precio) {
     const productoExistente = carrito.find(item => item.id === id);  // Verificar si el producto ya está en el carrito
@@ -35,7 +35,7 @@ function mostrarCarrito() {
         carrito.forEach(item => {
             const divItem = document.createElement('div');
             divItem.classList.add('item-carrito');
-            divItem.innerHTML = `
+            divItem.innerHTML = ` 
                 <p>${item.nombre} - $${item.precio.toFixed(2)} x ${item.cantidad}</p>
                 <button onclick="removeFromCart(${item.id})">Eliminar</button>  <!-- Botón para eliminar el producto -->
             `;
@@ -56,29 +56,21 @@ function removeFromCart(id) {
     mostrarCarrito();  // Mostrar el carrito actualizado
 }
 
-// Función para finalizar la compra y mostrar el QR
+// Función para finalizar la compra (mostrar QR y ocultar el carrito)
 function finalizarCompra() {
-    console.log('Botón Finalizar Compra clickeado');
     if (carrito.length === 0) {
         alert('Tu carrito está vacío. Añade productos antes de finalizar la compra.');
     } else {
-        // Ocultar el carrito
-        document.getElementById('carrito').style.display = 'none';
-        
-        // Mostrar el contenedor con el QR y mensaje de confirmación
-        const qrContainer = document.getElementById('qr-container');
-        qrContainer.style.display = 'block';
-        console.log('Contenedor QR mostrado');
-
-        // Verificar si la imagen se carga correctamente
-        const qrImage = qrContainer.querySelector('img');
-        console.log('Imagen QR cargada:', qrImage.src);
-
-        // Limpiar el carrito
-        carrito = [];
+        // Mostrar el mensaje de agradecimiento y el QR
+        document.getElementById('qr-container').style.display = 'block';  // Mostrar el QR
+        document.getElementById('carrito').style.display = 'none';  // Ocultar el carrito
+        document.getElementById('total').style.display = 'none';  // Ocultar el total
+        document.getElementById('btn-finalizar-compra').style.display = 'none';  // Ocultar el botón
+        alert('¡Gracias por tu compra!');
+        carrito = [];  // Limpiar el carrito
         localStorage.setItem('carrito', JSON.stringify(carrito));  // Guardar el carrito vacío
         updateCartCount();  // Actualizar el contador del carrito
-        mostrarCarrito();  // Actualizar la vista del carrito (vacío)
+        mostrarCarrito();  // Actualizar la vista del carrito
     }
 }
 
@@ -91,9 +83,3 @@ document.addEventListener('DOMContentLoaded', function() {
 // Llamada a la función para finalizar la compra al hacer clic en el botón
 document.getElementById('btn-finalizar-compra')?.addEventListener('click', finalizarCompra);
 
-// Asegurarse de que el carrito se actualice en la página de contacto
-if (document.getElementById('carrito-count')) {
-    document.addEventListener('DOMContentLoaded', function() {
-        updateCartCount();  // Actualizar el contador del carrito en la página de contacto
-    });
-}
