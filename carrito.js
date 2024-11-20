@@ -1,7 +1,7 @@
 // carrito.js
 
 // Variable para almacenar los productos en el carrito
-let carrito = [];
+let carrito = []; 
 
 // Función para agregar un producto al carrito
 function agregarAlCarrito(producto) {
