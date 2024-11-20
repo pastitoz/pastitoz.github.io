@@ -1,4 +1,43 @@
-// Array de categorías y productos
+// Array de productos destacados
+const productosDestacados = [
+    {
+        id: 1,
+        nombre: 'Arduino Uno',
+        descripcion: 'Controlador microcontrolador versátil para proyectos electrónicos.',
+        precio: 25.00,
+        imagen: 'images/Arduino_Uno.jpg'
+    },
+    {
+        id: 2,
+        nombre: 'Raspberry Pi 4',
+        descripcion: 'Computadora de placa reducida para proyectos de programación.',
+        precio: 35.00,
+        imagen: 'images/Raspberry_Pi_4.jpg'
+    },
+    {
+        id: 3,
+        nombre: 'ESP32',
+        descripcion: 'Módulo WiFi y Bluetooth para proyectos IoT.',
+        precio: 20.00,
+        imagen: 'images/ESP32.jpg'
+    },
+    {
+        id: 4,
+        nombre: 'BeagleBone Black',
+        descripcion: 'Placa de desarrollo para proyectos avanzados.',
+        precio: 45.00,
+        imagen: 'images/BeagleBone_Black.jpg'
+    },
+    {
+        id: 5,
+        nombre: 'STM32',
+        descripcion: 'Microcontrolador de 32 bits para proyectos electrónicos.',
+        precio: 30.00,
+        imagen: 'images/STM32.jpg'
+    }
+];
+
+// Array de categorías con productos
 const categorias = [
     {
         nombre: 'Tarjetas de Programación',
@@ -147,16 +186,16 @@ const categorias = [
             {
                 id: 4,
                 nombre: 'Teléfono de Gama Baja',
-                descripcion: 'Teléfono asequible para funciones básicas.',
-                precio: 100.00,
+                descripcion: 'Teléfono asequible con buenas características.',
+                precio: 200.00,
                 imagen: 'images/Telefono_Gama_Baja.jpg'
             },
             {
                 id: 5,
-                nombre: 'Teléfono Gaming',
-                descripcion: 'Teléfono especializado para juegos móviles.',
+                nombre: 'Teléfono con Cámara Avanzada',
+                descripcion: 'Teléfono con cámara de alta resolución para fotos impresionantes.',
                 precio: 900.00,
-                imagen: 'images/Telefono_Gaming.jpg'
+                imagen: 'images/Telefono_Camara_Avanzada.jpg'
             }
         ]
     },
@@ -168,7 +207,7 @@ const categorias = [
                 nombre: 'PC de Escritorio',
                 descripcion: 'Ordenador potente para tareas de programación y diseño.',
                 precio: 1500.00,
-                imagen: 'images/PC_de_Escritorio.jpg'
+                imagen: 'images/PC_Escritorio.jpg'
             },
             {
                 id: 2,
@@ -196,7 +235,7 @@ const categorias = [
                 nombre: 'Estación de Trabajo',
                 descripcion: 'Ordenador diseñado para tareas de alto rendimiento.',
                 precio: 2000.00,
-                imagen: 'images/Estacion_de_Trabajo.jpg'
+                imagen: 'images/Estacion_Trabajo.jpg'
             }
         ]
     },
@@ -229,7 +268,7 @@ const categorias = [
                 nombre: 'Horno de Convección',
                 descripcion: 'Horno que cocina de manera uniforme y rápida.',
                 precio: 400.00,
-                imagen: 'images/Horno_de_Conveccion.jpg'
+                imagen: 'images/Horno_Conveccion.jpg'
             },
             {
                 id: 5,
@@ -242,7 +281,22 @@ const categorias = [
     }
 ];
 
-// Función para mostrar las categorías y productos en la página
+// Función para mostrar productos destacados en la página de inicio (index.html)
+const productosDestacadosContainer = document.getElementById('productos-destacados');
+productosDestacados.forEach(producto => {
+    const productoElemento = document.createElement('div');
+    productoElemento.classList.add('producto');
+    productoElemento.innerHTML = `
+        <img src="${producto.imagen}" alt="${producto.nombre}">
+        <h4>${producto.nombre}</h4>
+        <p>${producto.descripcion}</p>
+        <p><strong>$${producto.precio.toFixed(2)}</strong></p>
+        <button>Agregar al carrito</button>
+    `;
+    productosDestacadosContainer.appendChild(productoElemento);
+});
+
+// Función para mostrar categorías y productos en la página de categorías (categorias.html)
 const categoriasContainer = document.getElementById('categorias');
 categorias.forEach(categoria => {
     const categoriaElemento = document.createElement('div');
@@ -263,3 +317,4 @@ categorias.forEach(categoria => {
     `;
     categoriasContainer.appendChild(categoriaElemento);
 });
+
