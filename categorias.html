@@ -1,109 +1,36 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"> <!-- Asegúrate de que la ruta sea correcta -->
+    <script src="script.js" defer></script> <!-- Este archivo contiene tu JavaScript -->
+    <title>Tienda en Línea - Categorías</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo de la Tienda">
+            <h1>Tienda en Línea</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="categorias.html">Categorías</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="carrito.html" id="carrito-link">Carrito (<span id="carrito-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-}
+    <main>
+        <h2>Categorías</h2>
+        <!-- Aquí se mostrarán las categorías dinámicamente -->
+        <div id="categorias" class="categorias"></div>
+    </main>
 
-header .logo {
-    display: flex;
-    align-items: center;
-}
-
-header .logo img {
-    height: 50px;
-    margin-right: 10px;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-main {
-    padding: 20px;
-}
-
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background-color: #f1f1f1;
-}
-
-.producto {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px 0;
-    width: calc(33.333% - 20px);
-    box-sizing: border-box;
-    display: inline-block;
-}
-
-.producto img {
-    max-width: 100%;
-    height: auto;
-}
-
-.producto h4 {
-    margin: 10px 0;
-}
-
-.producto button {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-}
-
-.producto button:hover {
-    background-color: #555;
-}
-
-.categorias .categoria {
-    margin-bottom: 20px;
-}
-
-.categorias .categoria h3 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
-
-.productos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-@media (max-width: 768px) {
-    .producto {
-        width: calc(50% - 20px); /* Para tablets */
-    }
-}
-
-@media (max-width: 480px) {
-    .producto {
-        width: 100%; /* Para móviles */
-    }
-}
-
-@media (max-width: 768px) and (orientation: landscape) {
-    .producto {
-        width: calc(33.333% - 20px); /* Ajuste para horizontal en dispositivos móviles */
-    }
-}
+    <footer>
+        <p>&copy; 2023 Tienda en Línea. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
