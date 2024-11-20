@@ -13,16 +13,28 @@ const categorias = [
             {
                 id: 2,
                 nombre: 'Raspberry Pi 4',
-                descripcion: 'Computadora de placa reducida para proyectos de programación.',
+                descripcion: 'Mini computadora para proyectos avanzados.',
                 precio: 35.00,
                 imagen: 'images/product2.jpg'
-            },
+            }
+        ]
+    },
+    {
+        nombre: 'Sensores',
+        productos: [
             {
                 id: 3,
-                nombre: 'ESP32',
-                descripcion: 'Módulo WiFi y Bluetooth para proyectos IoT.',
-                precio: 20.00,
+                nombre: 'Sensor de Temperatura',
+                descripcion: 'Sensor de temperatura digital de alta precisión.',
+                precio: 15.00,
                 imagen: 'images/product3.jpg'
+            },
+            {
+                id: 4,
+                nombre: 'Sensor de Movimiento',
+                descripcion: 'Detector de movimiento PIR.',
+                precio: 10.00,
+                imagen: 'images/product4.jpg'
             }
         ]
     }
@@ -31,22 +43,51 @@ const categorias = [
 // Array para almacenar los productos del carrito
 let carrito = [];
 
-// Función para mostrar productos destacados
+// Función para mostrar productos destacados (solo 5) en la página de inicio
 function mostrarProductosDestacados() {
     const contenedorProductos = document.getElementById('productos-destacados');
+    let productosDestacados = [];
     categorias.forEach(categoria => {
-        categoria.productos.forEach(producto => {
-            const divProducto = document.createElement('div');
-            divProducto.classList.add('producto');
-            divProducto.innerHTML = `
-                <img src="${producto.imagen}" alt="${producto.nombre}">
-                <h4>${producto.nombre}</h4>
-                <p>${producto.descripcion}</p>
-                <p>Precio: $${producto.precio.toFixed(2)}</p>
-                <button onclick="añadirAlCarrito(${producto.id})">Añadir al carrito</button>
-            `;
-            contenedorProductos.appendChild(divProducto);
-        });
+        productosDestacados = productosDestacados.concat(categoria.productos);
+    });
+    // Limitar a 5 productos
+    productosDestacados = productosDestacados.slice(0, 5);
+
+    productosDestacados.forEach(producto => {
+        const divProducto = document.createElement('div');
+        divProducto.classList.add('producto');
+        divProducto.innerHTML = `
+            <img src="${producto.imagen}" alt="${producto.nombre}">
+            <h4>${producto.nombre}</h4>
+            <p>${producto.descripcion}</p>
+            <p>Precio: $${producto.precio.toFixed(2)}</p>
+            <button onclick="añadirAlCarrito(${producto.id})">Añadir al carrito</button>
+        `;
+        contenedorProductos.appendChild(divProducto);
+    });
+}
+
+// Función para mostrar todas las categorías y sus productos en la página de categorías
+function mostrarCategorias() {
+    const contenedorCategorias = document.getElementById('categorias');
+    categorias.forEach(categoria => {
+        const divCategoria = document.createElement('div');
+        divCategoria.classList.add('categoria');
+        divCategoria.innerHTML = `
+            <h3>${categoria.nombre}</h3>
+            <div class="productos">
+                ${categoria.productos.map(producto => `
+                    <div class="producto">
+                        <img src="${producto.imagen}" alt="${producto.nombre}">
+                        <h4>${producto.nombre}</h4>
+                        <p>${producto.descripcion}</p>
+                        <p>Precio: $${producto.precio.toFixed(2)}</p>
+                        <button onclick="añadirAlCarrito(${producto.id})">Añadir al carrito</button>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        contenedorCategorias.appendChild(divCategoria);
     });
 }
 
@@ -117,7 +158,14 @@ document.getElementById('checkout-btn').addEventListener('click', () => {
 });
 
 // Mostrar productos al cargar la página
-document.addEventListener('DOMContentLoaded', mostrarProductosDestacados);
+document.addEventListener('DOMContentLoaded', function () {
+    if (window.location.pathname.includes('index.html')) {
+        mostrarProductosDestacados();
+    }
+    if (window.location.pathname.includes('categorias.html')) {
+        mostrarCategorias();
+    }
+});
 
 // Mostrar el carrito en la página de carrito
 if (window.location.pathname.includes('carrito.html')) {
