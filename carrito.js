@@ -56,17 +56,22 @@ function removeFromCart(id) {
     mostrarCarrito();  // Mostrar el carrito actualizado
 }
 
-// Función para finalizar la compra (puedes agregar un comportamiento aquí como redirigir a una página de pago)
+// Función para finalizar la compra y mostrar el QR
 function finalizarCompra() {
     if (carrito.length === 0) {
         alert('Tu carrito está vacío. Añade productos antes de finalizar la compra.');
     } else {
-        // Aquí podrías redirigir a una página de pago o mostrar un resumen de la compra
-        alert('¡Gracias por tu compra!');
-        carrito = [];  // Limpiar el carrito
+        // Ocultar el carrito
+        document.getElementById('carrito').style.display = 'none';
+        
+        // Mostrar el contenedor con el QR y mensaje de confirmación
+        document.getElementById('qr-container').style.display = 'block';
+        
+        // Limpiar el carrito
+        carrito = [];
         localStorage.setItem('carrito', JSON.stringify(carrito));  // Guardar el carrito vacío
         updateCartCount();  // Actualizar el contador del carrito
-        mostrarCarrito();  // Actualizar la vista del carrito
+        mostrarCarrito();  // Actualizar la vista del carrito (vacío)
     }
 }
 
