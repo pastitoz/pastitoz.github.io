@@ -33,11 +33,11 @@ const categorias = [
     {
         nombre: 'Teléfonos Móviles',
         productos: [
-            { id: 16, nombre: 'Smartphone XYZ', descripcion: 'Teléfono inteligente con pantalla AMOLED.', precio: 700.00, imagen: 'images/smartphone-xyz.jpg' },
-            { id: 17, nombre: 'Teléfono 5G ABC', descripcion: 'Teléfono móvil compatible con redes 5G.', precio: 800.00, imagen: 'images/telefono-5g-abc.jpg' },
-            { id: 18, nombre: 'Teléfono Plegable', descripcion: 'Teléfono innovador con pantalla plegable.', precio: 1200.00, imagen: 'images/telefono-plegable.jpg' },
-            { id: 19, nombre: 'Teléfono de Gama Baja', descripcion: 'Teléfono asequible con buenas características.', precio: 200.00, imagen: 'images/telefono-gama-baja.jpg' },
-            { id: 20, nombre: 'Teléfono con Cámara Avanzada', descripcion: 'Teléfono con cámara de alta resolución para fotos impresionantes.', precio: 900.00, imagen: 'images/telefono-camara-avanzada.jpg' }
+            { id: 16, nombre: 'iPhone 15 Pro Max', descripcion: 'Teléfono premium con chip A17 Bionic y cámara de 48 MP.', precio: 1200.00, imagen: 'images/iphone-15-pro-max.jpg' },
+            { id: 17, nombre: 'Samsung Galaxy S23 Ultra', descripcion: 'Smartphone con pantalla Dynamic AMOLED y cámara de 200 MP', precio: 1100.00, imagen: 'images/samsung-galaxy-s23-ultra.jpg' },
+            { id: 18, nombre: 'Google Pixel 8 Pro', descripcion: 'Dispositivo con Android puro y herramientas avanzadas de IA.', precio: 1000.00, imagen: 'images/google-pixel-8-pro.jpg' },
+            { id: 19, nombre: 'Xiaomi 13 Ultra', descripcion: 'Teléfono insignia con cámaras Leica y batería de larga duración.', precio: 900.00, imagen: 'images/xiaomi-13-ultra.jpg' },
+            { id: 20, nombre: 'OnePlus 12', descripcion: 'Teléfono 5G con pantalla AMOLED y carga ultra rápida.', precio: 800.00, imagen: 'images/oneplus-12.jpg' }
         ]
     },
     {
