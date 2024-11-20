@@ -1,3 +1,4 @@
+<!-- carrito.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,33 +8,15 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="logo.png" alt="Logo">
-            <h1>Tienda Online</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="categorias.html">Categorías</a></li>
-                <li><a href="carrito.html">Carrito</a></li>
-            </ul>
-        </nav>
-    </header>
+    <h1>Carrito de Compras</h1>
 
-    <main id="carrito">
-        <h2>Carrito de Compras</h2>
-        <div id="productos-carrito">
-            <!-- Aquí se mostrarán los productos añadidos al carrito -->
-        </div>
-        <div id="total">
-            <p>Total: $<span id="total-precio">0.00</span></p>
-        </div>
-    </main>
+    <!-- Contenedor de productos en el carrito -->
+    <div id="productos-carrito"></div>
 
-    <footer>
-        <p>&copy; 2024 Tienda Online</p>
-    </footer>
+    <!-- Total -->
+    <div>
+        <h3>Total: $<span id="total-precio">0.00</span></h3>
+    </div>
 
     <script src="carrito.js"></script>
 </body>
