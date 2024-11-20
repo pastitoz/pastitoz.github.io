@@ -10,13 +10,11 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
-    padding: 0;
-    margin: 0;
 }
 
 /* Estilo del encabezado */
 header {
-    background-color: #1e1e1e;
+    background-color: #1e1e1e; /* Un color oscuro relacionado con tecnología */
     color: white;
     padding: 20px 0;
     text-align: center;
@@ -24,7 +22,6 @@ header {
 
 header .logo img {
     width: 120px;
-    max-width: 100%;
 }
 
 /* Estilo del menú de navegación */
@@ -49,34 +46,33 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: #ff6600;
+    background-color: #ff6600; /* Un color que se relacione con tecnología */
     border-radius: 5px;
 }
 
 /* Estilo de los productos destacados */
 .productos-destacados {
     display: flex;
-    flex-wrap: wrap; /* Esto permite que las tarjetas se ajusten en pantallas pequeñas */
+    flex-wrap: wrap;
     justify-content: space-around;
+    gap: 20px;
     margin: 30px 0;
 }
 
-/* Ajuste de los productos */
 .productos .producto {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 30%;
-    margin: 10px;
+    width: 30%; /* Usamos 30% para tres productos por fila */
     padding: 20px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px; /* Añadimos un margen inferior */
 }
 
 .productos .producto img {
-    width: 100%;
+    width: 100%; /* Hace que las imágenes se ajusten al contenedor */
     max-width: 200px;
-    height: auto; /* Asegurarse de que las imágenes no distorsionen */
     margin-bottom: 10px;
 }
 
@@ -101,39 +97,44 @@ nav ul li a:hover {
 }
 
 .productos .producto button:hover {
-    background-color: #e65c00;
+    background-color: #e65c00; /* Cambiar color al hacer hover */
 }
 
-/* Estilos para dispositivos móviles */
+/* Media Queries para mejorar la responsividad */
+
+/* Para pantallas pequeñas, reducimos la cantidad de productos por fila */
 @media (max-width: 768px) {
-    /* Ajustar el menú para que se apile verticalmente */
-    nav ul {
-        flex-direction: column;
-    }
-
-    /* Ajustar el tamaño de las tarjetas de productos */
     .productos .producto {
-        width: 100%;
-        margin: 10px 0;
-    }
-
-    /* Reducir el tamaño del texto en pantallas pequeñas */
-    nav ul li a {
-        font-size: 14px;
+        width: 45%; /* Dos productos por fila */
     }
 }
 
-/* Ajustes para dispositivos muy pequeños, como móviles */
+/* Para pantallas muy pequeñas (móviles), mostramos un solo producto por fila */
 @media (max-width: 480px) {
-    header {
-        padding: 10px 0;
+    .productos .producto {
+        width: 100%; /* Un solo producto por fila */
     }
+}
 
-    header .logo img {
-        width: 100px;
-    }
+/* Estilo para la página de carrito */
+.carrito {
+    margin: 20px;
+}
 
-    nav ul {
-        gap: 10px;
-    }
+.producto-carrito {
+    margin-bottom: 15px;
+}
+
+.total {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Estilo del footer */
+footer {
+    background-color: #1e1e1e;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
 }
