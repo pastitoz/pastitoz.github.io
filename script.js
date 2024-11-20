@@ -11,7 +11,7 @@ const categorias = [
         ]
     },
     {
-        nombre: 'Periféricos',
+        nombre: 'Tecnología de Escritorio',
         productos: [
             { id: 6, nombre: 'Laptop Gaming', descripcion: 'Laptop potente para programación y juegos.', precio: 1200.00, imagen: 'images/laptop-gaming.jpg' },
             { id: 7, nombre: 'Monitor 4K', descripcion: 'Monitor de alta resolución para desarrollo.', precio: 400.00, imagen: 'images/monitor-4k.jpg' },
