@@ -3,57 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eCommerce Minimalista</title>
-    <!-- Ruta correcta al archivo CSS -->
-    <link rel="stylesheet" href="css/style.css"> <!-- Verifica que esté en la carpeta 'css' -->
+    <meta name="description" content="Tienda de productos electrónicos">
+    <link rel="stylesheet" href="styles.css">
+    <title>Tienda Electrónica</title>
 </head>
 <body>
-    <!-- Header -->
     <header>
-        <div class="logo">
-            <!-- Asegúrate de que la ruta a tu logo sea correcta -->
-            <img src="images/logo.png" alt="Logo"> <!-- Verifica que esté en la carpeta 'images' -->
-        </div>
+        <h1>Tienda Electrónica</h1>
         <nav>
             <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Categorías</a></li>
-                <li><a href="#">Carrito</a></li>
+                <li><a href="#categorias">Categorías</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Categorías de Productos -->
-    <section class="productos">
-        <h2>Productos Destacados</h2>
-        <div class="productos-destacados">
-            <!-- Producto 1 -->
-            <div class="producto">
-                <img src="images/producto1.jpg" alt="Producto 1"> <!-- Verifica la ruta de la imagen -->
-                <h3>Producto 1</h3>
-                <p>$19.99</p>
-                <button>Comprar</button>
+    <main>
+        <section id="categorias">
+            <h2>Categorías</h2>
+            <div class="categoria">
+                <h3>Tarjetas de Programación</h3>
+                <div class="productos">
+                    <div class="producto">
+                        <img src="images/product1.jpg" alt="Producto 1">
+                        <h4>Tarjeta Arduino Uno</h4>
+                        <p>Controlador microcontrolador versátil para proyectos electrónicos.</p>
+                    </div>
+                    <div class="producto">
+                        <img src="images/product2.jpg" alt="Producto 2">
+                        <h4>Raspberry Pi 4</h4>
+                        <p>Computadora de placa reducida para proyectos de programación.</p>
+                    </div>
+                    <div class="producto">
+                        <img src="images/product3.jpg" alt="Producto 3">
+                        <h4>ESP8266</h4>
+                        <p>Módulo WiFi para proyectos de IoT.</p>
+                    </div>
+                    <div class="producto">
+                        <img src="images/product4.jpg" alt="Producto 4">
+                        <h4>Tarjeta de Expansión</h4>
+                        <p>Expande las capacidades de tu microcontrolador.</p>
+                    </div>
+                    <div class="producto">
+                        <img src="images/product5.jpg" alt="Producto 5">
+                        <h4>Kit de Sensores</h4>
+                        <p>Incluye varios sensores para tus proyectos.</p>
+                    </div>
+                </div>
             </div>
-            <!-- Producto 2 -->
-            <div class="producto">
-                <img src="images/producto2.jpg" alt="Producto 2"> <!-- Verifica la ruta de la imagen -->
-                <h3>Producto 2</h3>
-                <p>$29.99</p>
-                <button>Comprar</button>
-            </div>
-            <!-- Producto 3 -->
-            <div class="producto">
-                <img src="images/producto3.jpg" alt="Producto 3"> <!-- Verifica la ruta de la imagen -->
-                <h3>Producto 3</h3>
-                <p>$39.99</p>
-                <button>Comprar</button>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 eCommerce Minimalista</p>
-    </footer>
-</body>
-</html>
+            <div class="categoria">
+                <h3>Equipos de Programación</h3>
+                <div class="productos">
+                    <div class="producto">
+                        <img src="images/product1.jpg" alt="Producto 1">
+                        <h4>Computadora Portátil</h4>
+                        <p>Portátil potente para programación y diseño.</p>
+                    </div>
+                    <div class="producto">
+                        <img src="images/product2.jpg" alt="Producto 2">
+                        <h4>Teclado Mecánico</h4>
+                        <p>Teclado ideal para programadores.</p>
+                    </div>
+                    <div class="producto">
+                        <img src="images/product3.jpg" alt="Producto 3">
+                        <h4>Monitor 4K</h4>
+                        <p>Monitor de alta resolución para desarrollo.</p>
+                    </div>
+                    <div class="producto">
+                        <img src="images/product4.jpg" alt="Producto 4">
+                        <h4>Mouse Ergonomico</h4>
+                        <p>Mouse cómodo para largas horas de trabajo.</p>
+                    </div>
+                    <div class="producto">
+                        <img src="images/product5.jpg" alt="Producto 5">
+                        <h4>Docking Station</h4>
+                        <p>Conecta múltiples dispositivos a tu laptop.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="categoria">
+                <h3>Equipos Inteligentes</h3>
+                <div class="productos">
+                    <div class="producto">
+                        <img src="images/product1.jpg" alt="Producto 1">
+                        <h4>Asistente Virtual</h4>
+                        <p>Controla tu hogar con tu voz.</p>
+                    </div>
+                   
