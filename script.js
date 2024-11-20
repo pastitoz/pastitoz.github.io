@@ -261,12 +261,20 @@ function addToCart(id, nombre, precio) {
 // Función para actualizar el contador del carrito
 function updateCartCount() {
     const carritoCount = document.getElementById('carrito-count');
-    carritoCount.textContent = carrito.reduce((total, item) => total + item.cantidad, 0);  // Contar el total de productos
+    if (carritoCount) {
+        carritoCount.textContent = carrito.reduce((total, item) => total + item.cantidad, 0);  // Contar el total de productos
+    }
 }
 
 // Función para mostrar los productos destacados en la página de inicio (index.html)
 function mostrarProductosDestacados() {
     const contenedorDestacados = document.getElementById('productos-destacados');
+    // Tomamos los primeros productos de cada categoría como productos destacados (puedes modificar esto)
+    let productosDestacados = [];
+    categorias.forEach(categoria => {
+        productosDestacados.push(...categoria.productos.slice(0, 1));  // Tomamos solo el primer producto de cada categoría
+    });
+
     productosDestacados.forEach(producto => {
         const divProducto = document.createElement('div');
         divProducto.classList.add('producto');
@@ -311,10 +319,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Llamada a la función para mostrar categorías en categorias.html
-document.addEventListener('DOMContentLoaded', function() {
-    mostrarCategorias();
-    updateCartCount();  // Asegurar que el contador del carrito se actualice al cargar la página
-});
+if (document.getElementById('categorias')) {
+    document.addEventListener('DOMContentLoaded', function() {
+        mostrarCategorias();
+        updateCartCount();  // Asegurar que el contador del carrito se actualice al cargar la página
+    });
+}
 
 // Función para mostrar el carrito en la página carrito.html
 function mostrarCarrito() {
@@ -348,3 +358,4 @@ function removeFromCart(id) {
 if (document.getElementById('carrito')) {
     document.addEventListener('DOMContentLoaded', mostrarCarrito);
 }
+
