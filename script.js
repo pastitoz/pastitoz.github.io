@@ -127,15 +127,12 @@ if (document.getElementById('carrito-count')) {
 }
 
 // Función para mostrar productos destacados en index.html
-document.addEventListener('DOMContentLoaded', function() {
-    if (document.getElementById('productos-destacados')) {
-        mostrarProductosDestacados();
-    }
-});
-
-// Función para mostrar productos destacados en index.html
 function mostrarProductosDestacados() {
     const contenedorDestacados = document.getElementById('productos-destacados');
+    
+    // Asegurarse de que el contenedor esté vacío antes de agregar productos
+    contenedorDestacados.innerHTML = ''; 
+
     let productosDestacados = [];
     categorias.forEach(categoria => {
         productosDestacados.push(...categoria.productos.slice(0, 1));  // Tomamos solo el primer producto de cada categoría
@@ -154,6 +151,36 @@ function mostrarProductosDestacados() {
         contenedorDestacados.appendChild(divProducto);
     });
 }
+
+// Función para mostrar las categorías en categorias.html
+function mostrarCategorias() {
+    const contenedorCategorias = document.getElementById('categorias');
+    
+    // Asegurarse de que el contenedor esté vacío antes de agregar categorías
+    contenedorCategorias.innerHTML = ''; 
+
+    categorias.forEach(categoria => {
+        const divCategoria = document.createElement('div');
+        divCategoria.classList.add('categoria');
+        divCategoria.innerHTML = `<h3>${categoria.nombre}</h3>`;
+
+        categoria.productos.forEach(producto => {
+            const divProducto = document.createElement('div');
+            divProducto.classList.add('producto');
+            divProducto.innerHTML = `
+                <img src="${producto.imagen}" alt="${producto.nombre}">
+                <h4>${producto.nombre}</h4>
+                <p>${producto.descripcion}</p>
+                <p>Precio: $${producto.precio.toFixed(2)}</p>
+                <button class="btn-add-to-cart" onclick="addToCart(${producto.id}, '${producto.nombre}', ${producto.precio}, '${producto.imagen}')">Añadir al carrito</button>
+            `;
+            divCategoria.appendChild(divProducto);
+        });
+
+        contenedorCategorias.appendChild(divCategoria);
+    });
+}
+
 
 // Función para mostrar las categorías en categorias.html
 function mostrarCategorias() {
