@@ -95,7 +95,7 @@ const categorias = [
                 nombre: 'Cámara de Seguridad',
                 descripcion: 'Cámara de vigilancia con conexión WiFi.',
                 precio: 100.00,
-                imagen: 'images/Camara_de_Seguridad.jpg'
+                imagen: 'images/Camara_Seguridad.jpg'
             },
             {
                 id: 3,
@@ -147,16 +147,16 @@ const categorias = [
             {
                 id: 4,
                 nombre: 'Teléfono de Gama Baja',
-                descripcion: 'Teléfono asequible con buenas características.',
-                precio: 200.00,
+                descripcion: 'Teléfono asequible para funciones básicas.',
+                precio: 100.00,
                 imagen: 'images/Telefono_Gama_Baja.jpg'
             },
             {
                 id: 5,
-                nombre: 'Teléfono con Cámara Avanzada',
-                descripcion: 'Teléfono con cámara de alta resolución para fotos impresionantes.',
+                nombre: 'Teléfono Gaming',
+                descripcion: 'Teléfono especializado para juegos móviles.',
                 precio: 900.00,
-                imagen: 'images/Telefono_Camara_Avanzada.jpg'
+                imagen: 'images/Telefono_Gaming.jpg'
             }
         ]
     },
@@ -242,75 +242,24 @@ const categorias = [
     }
 ];
 
-// Carrito de compras
-let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
-// Función para agregar un producto al carrito
-function agregarAlCarrito(producto) {
-    carrito.push(producto);
-    localStorage.setItem('carrito', JSON.stringify(carrito)); // Guardar el carrito en localStorage
-    actualizarContadorCarrito();
-}
-
-// Función para actualizar el contador del carrito
-function actualizarContadorCarrito() {
-    const carritoCount = document.getElementById('carrito-count');
-    carritoCount.textContent = carrito.length;
-}
-
-// Función para mostrar los productos destacados en la página principal
-function mostrarProductosDestacados() {
-    const contenedorProductos = document.getElementById('productos-destacados');
-    
-    // Asegurémonos de mostrar solo algunos productos destacados (en este caso, los primeros 5)
-    const productosDestacados = [
-        categorias[0].productos[0], // Arduino Uno
-        categorias[1].productos[1], // Monitor 4K
-        categorias[2].productos[2], // Bombilla Inteligente
-        categorias[3].productos[3], // Mini PC
-        categorias[4].productos[4]  // Cafetera Programable
-    ];
-
-    productosDestacados.forEach(producto => {
-        const divProducto = document.createElement('div');
-        divProducto.classList.add('producto');
-        divProducto.innerHTML = `
-            <img src="${producto.imagen}" alt="${producto.nombre}">
-            <h4>${producto.nombre}</h4>
-            <p>${producto.descripcion}</p>
-            <p>Precio: $${producto.precio.toFixed(2)}</p>
-            <button onclick="agregarAlCarrito(${JSON.stringify(producto)})">Añadir al carrito</button>
-        `;
-        contenedorProductos.appendChild(divProducto);
-    });
-}
-
 // Función para mostrar las categorías y productos en la página
-function mostrarCategorias() {
-    const contenedorCategorias = document.getElementById('categorias');
-    categorias.forEach(categoria => {
-        const divCategoria = document.createElement('div');
-        divCategoria.classList.add('categoria');
-        divCategoria.innerHTML = `<h3>${categoria.nombre}</h3>`;
-        categoria.productos.forEach(producto => {
-            const divProducto = document.createElement('div');
-            divProducto.classList.add('producto');
-            divProducto.innerHTML = `
-                <img src="${producto.imagen}" alt="${producto.nombre}">
-                <h4>${producto.nombre}</h4>
-                <p>${producto.descripcion}</p>
-                <p>Precio: $${producto.precio.toFixed(2)}</p>
-                <button onclick="agregarAlCarrito(${JSON.stringify(producto)})">Añadir al carrito</button>
-            `;
-            divCategoria.appendChild(divProducto);
-        });
-        contenedorCategorias.appendChild(divCategoria);
-    });
-}
-
-// Llamar a la función para mostrar los productos destacados y las categorías al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-    mostrarProductosDestacados();
-    mostrarCategorias();
-    actualizarContadorCarrito();
+const categoriasContainer = document.getElementById('categorias');
+categorias.forEach(categoria => {
+    const categoriaElemento = document.createElement('div');
+    categoriaElemento.classList.add('categoria');
+    categoriaElemento.innerHTML = `
+        <h3>${categoria.nombre}</h3>
+        <div class="productos">
+            ${categoria.productos.map(producto => `
+                <div class="producto">
+                    <img src="${producto.imagen}" alt="${producto.nombre}">
+                    <h4>${producto.nombre}</h4>
+                    <p>${producto.descripcion}</p>
+                    <p><strong>$${producto.precio.toFixed(2)}</strong></p>
+                    <button>Agregar al carrito</button>
+                </div>
+            `).join('')}
+        </div>
+    `;
+    categoriasContainer.appendChild(categoriaElemento);
 });
