@@ -247,7 +247,6 @@ let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 // Función para agregar un producto al carrito
 function addToCart(id, nombre, precio) {
-    // Verificar si el producto ya está en el carrito
     const productoExistente = carrito.find(item => item.id === id);
     if (productoExistente) {
         productoExistente.cantidad += 1;  // Aumentar cantidad si el producto ya está en el carrito
@@ -269,7 +268,6 @@ function updateCartCount() {
 // Función para mostrar los productos destacados en la página de inicio (index.html)
 function mostrarProductosDestacados() {
     const contenedorDestacados = document.getElementById('productos-destacados');
-    // Tomamos los primeros productos de cada categoría como productos destacados (puedes modificar esto)
     let productosDestacados = [];
     categorias.forEach(categoria => {
         productosDestacados.push(...categoria.productos.slice(0, 1));  // Tomamos solo el primer producto de cada categoría
@@ -314,7 +312,9 @@ function mostrarCategorias() {
 
 // Llamada a la función para mostrar productos destacados en index.html
 document.addEventListener('DOMContentLoaded', function() {
-    mostrarProductosDestacados();
+    if (document.getElementById('productos-destacados')) {
+        mostrarProductosDestacados();
+    }
     updateCartCount();  // Asegurar que el contador del carrito se actualice al cargar la página
 });
 
@@ -326,7 +326,7 @@ if (document.getElementById('categorias')) {
     });
 }
 
-// Función para mostrar el carrito en la página carrito.html
+// Mostrar el carrito en carrito.html
 function mostrarCarrito() {
     const contenedorCarrito = document.getElementById('carrito');
     contenedorCarrito.innerHTML = '';  // Limpiar contenedor
@@ -359,3 +359,9 @@ if (document.getElementById('carrito')) {
     document.addEventListener('DOMContentLoaded', mostrarCarrito);
 }
 
+// Asegurarse de que el carrito se actualice en la página de contacto
+if (document.getElementById('carrito-count')) {
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCartCount();
+    });
+}
