@@ -43,21 +43,22 @@ const categorias = [
     {
         nombre: 'Ordenadores',
         productos: [
-            { id: 21, nombre: 'PC de Escritorio', descripcion: 'Ordenador potente para tareas de programación y diseño.', precio: 1500.00, imagen: 'images/pc-escritorio.jpg' },
-            { id: 22, nombre: 'Laptop Ultraligera', descripcion: 'Laptop ligera y portátil para llevar a todas partes.', precio: 1000.00, imagen: 'images/laptop-ultraligera.jpg' },
-            { id: 23, nombre: 'All-in-One', descripcion: 'Ordenador todo en uno con pantalla táctil.', precio: 1200.00, imagen: 'images/all-in-one.jpg' },
-            { id: 24, nombre: 'Mini PC', descripcion: 'PC compacto ideal para espacios reducidos.', precio: 400.00, imagen: 'images/mini-pc.jpg' },
-            { id: 25, nombre: 'Estación de Trabajo', descripcion: 'Ordenador diseñado para tareas de alto rendimiento.', precio: 2000.00, imagen: 'images/estacion-de-trabajo.jpg' }
+            { id: 21, nombre: 'Dell XPS 8950', descripcion: 'PC de escritorio de alto rendimiento para programación y diseño.', precio: 1600.00, imagen: 'images/dell-xps-8950.jpg' },
+            { id: 22, nombre: 'MacBook Air M2', descripcion: 'Laptop ultraligera con el chip M2 para portabilidad y potencia.', precio: 1200.00, imagen: 'images/macbook-air-m2.jpg' },
+            { id: 23, nombre: 'HP Envy 34 All-in-One', descripcion: 'Ordenador todo en uno con pantalla 5K ultrawide.', precio: 1700.00, imagen: 'images/hp-envy-34-aio.jpg' },
+            { id: 24, nombre: 'Intel NUC 13 Pro', descripcion: 'Mini PC compacto con procesador Intel Core i7 de 13ª generación.', precio: 700.00, imagen: 'images/intel-nuc-13-pro.jpg' },
+            { id: 25, nombre: 'Lenovo ThinkStation P620', descripcion: 'Estación de trabajo con procesador AMD Ryzen Threadripper PRO.', precio: 2000.00, imagen: 'images/lenovo-thinkstation-p620.jpg' }
         ]
     },
     {
         nombre: 'Equipos Domésticos',
         productos: [
-            { id: 26, nombre: 'Aspiradora Robot', descripcion: 'Aspiradora automática que limpia tu hogar.', precio: 300.00, imagen: 'images/aspiradora-robot.jpg' },
-            { id: 27, nombre: 'Lavadora Inteligente', descripcion: 'Lavadora que se controla desde tu smartphone.', precio: 600.00, imagen: 'images/lavadora-inteligente.jpg' },
-            { id: 28, nombre: 'Refrigerador Inteligente', descripcion: 'Refrigerador con pantalla y conexión a internet.', precio: 1200.00, imagen: 'images/refrigerador-inteligente.jpg' },
-            { id: 29, nombre: 'Horno de Convección', descripcion: 'Horno que cocina de manera uniforme y rápida.', precio: 400.00, imagen: 'images/horno-conveccion.jpg' },
-            { id: 30, nombre: 'Cafetera Programable', descripcion: 'Cafetera que puedes programar desde tu móvil.', precio: 150.00, imagen: 'images/cafetera-programable.jpg' }
+            { id: 26, nombre: 'iRobot Roomba i7+', descripcion: 'Aspiradora robot con vaciado automático.', precio: 500.00, imagen: 'images/irobot-roomba-i7+.jpg' },
+            { id: 27, nombre: 'Samsung WW90T554DTW', descripcion: 'Lavadora inteligente con AI para optimizar el lavado.', precio: 800.00, imagen: 'images/samsung-ww90t554dtw.jpg' },
+            { id: 28, nombre: 'LG InstaView Door-in-Door', descripcion: 'Refrigerador con pantalla táctil y tecnología ThinQ.', precio: 2500.00, imagen: 'images/lg-instaview.jpg' },
+            { id: 29, nombre: 'Breville Smart Oven Air Fryer', descripcion: 'Horno con freidora de aire y convección.', precio: 450.00, imagen: 'images/breville-smart-oven.jpg' },
+            { id: 30, nombre: 'Nespresso Vertuo Next', descripcion: 'Cafetera programable con conectividad Bluetooth.', precio: 180.00, imagen: 'images/nespresso-vertuo-next.jpg' }
+
         ]
     }
 ];
