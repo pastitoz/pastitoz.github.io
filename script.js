@@ -281,7 +281,7 @@ const productosDestacados = [
     }
 ];
 
-// Función para mostrar los productos destacados
+// Función para mostrar los productos destacados en la página de inicio (index.html)
 function mostrarProductosDestacados() {
     const contenedorDestacados = document.getElementById('productos-destacados');
     productosDestacados.forEach(producto => {
@@ -292,6 +292,7 @@ function mostrarProductosDestacados() {
             <h4>${producto.nombre}</h4>
             <p>${producto.descripcion}</p>
             <p>Precio: $${producto.precio.toFixed(2)}</p>
+            <button class="btn-add-to-cart">Añadir al carrito</button>
         `;
         contenedorDestacados.appendChild(divProducto);
     });
@@ -312,12 +313,14 @@ function mostrarCategorias() {
                 <h4>${producto.nombre}</h4>
                 <p>${producto.descripcion}</p>
                 <p>Precio: $${producto.precio.toFixed(2)}</p>
+                <button class="btn-add-to-cart">Añadir al carrito</button>
             `;
             divCategoria.appendChild(divProducto);
         });
         contenedorCategorias.appendChild(divCategoria);
     });
 }
+
 
 // Llamada a la función para mostrar productos destacados en index.html
 document.addEventListener('DOMContentLoaded', mostrarProductosDestacados);
