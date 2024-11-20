@@ -1,36 +1,33 @@
+<!-- carrito.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
-    <title>Tienda en Línea - Carrito</title>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="images/logo.png" alt="Logo de la Tienda">
-            <h1>Tienda en Línea</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="categorias.html">Categorías</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="carrito.html" id="carrito-link">Carrito (<span id="carrito-count">0</span>)</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <h2>Carrito de Compras</h2>
-        <div id="carrito" class="carrito"></div>
-        <button id="checkout-btn">Proceder al Pago</button>
-    </main>
-
-    <footer>
-        <p>&copy; 2023 Tienda en Línea. Todos los derechos reservados.</p>
-    </footer>
+    <h1>Carrito de Compras</h1>
+    <div id="productos-carrito">
+        <!-- Aquí se mostrarán los productos del carrito -->
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // Mostrar los productos del carrito en la página carrito.html
+        const contenedorCarrito = document.getElementById('productos-carrito');
+        carrito.forEach(producto => {
+            const divProducto = document.createElement('div');
+            divProducto.classList.add('producto');
+            divProducto.innerHTML = `
+                <img src="${producto.imagen}" alt="${producto.nombre}">
+                <h4>${producto.nombre}</h4>
+                <p>${producto.descripcion}</p>
+                <p>Precio: $${producto.precio.toFixed(2)}</p>
+            `;
+            contenedorCarrito.appendChild(divProducto);
+        });
+    </script>
 </body>
 </html>
+
