@@ -181,30 +181,6 @@ function mostrarCategorias() {
     });
 }
 
-
-// Función para mostrar las categorías en categorias.html
-function mostrarCategorias() {
-    const contenedorCategorias = document.getElementById('categorias');
-    categorias.forEach(categoria => {
-        const divCategoria = document.createElement('div');
-        divCategoria.classList.add('categoria');
-        divCategoria.innerHTML = `<h3>${categoria.nombre}</h3>`;
-        categoria.productos.forEach(producto => {
-            const divProducto = document.createElement('div');
-            divProducto.classList.add('producto');
-            divProducto.innerHTML = `
-                <img src="${producto.imagen}" alt="${producto.nombre}">
-                <h4>${producto.nombre}</h4>
-                <p>${producto.descripcion}</p>
-                <p>Precio: $${producto.precio.toFixed(2)}</p>
-                <button class="btn-add-to-cart" onclick="addToCart(${producto.id}, '${producto.nombre}', ${producto.precio}, '${producto.imagen}')">Añadir al carrito</button>
-            `;
-            divCategoria.appendChild(divProducto);
-        });
-        contenedorCategorias.appendChild(divCategoria);
-    });
-}
-
 // Llamada a la función para mostrar categorías en categorias.html
 if (document.getElementById('categorias')) {
     document.addEventListener('DOMContentLoaded', function() {
