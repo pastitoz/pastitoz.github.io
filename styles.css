@@ -1,74 +1,137 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+// Array de categorías y productos
+const categorias = [
+    {
+        nombre: 'Tarjetas de Programación',
+        productos: [
+            {
+                id: 1,
+                nombre: 'Arduino Uno',
+                descripcion: 'Controlador microcontrolador versátil para proyectos electrónicos.',
+                precio: 25.00,
+                imagen: 'images/product1.jpg'
+            },
+            {
+                id: 2,
+                nombre: 'Raspberry Pi 4',
+                descripcion: 'Mini computadora para proyectos avanzados.',
+                precio: 35.00,
+                imagen: 'images/product2.jpg'
+            }
+        ]
+    },
+    {
+        nombre: 'Sensores',
+        productos: [
+            {
+                id: 3,
+                nombre: 'Sensor de Temperatura',
+                descripcion: 'Sensor de temperatura digital de alta precisión.',
+                precio: 15.00,
+                imagen: 'images/product3.jpg'
+            },
+            {
+                id: 4,
+                nombre: 'Sensor de Movimiento',
+                descripcion: 'Detector de movimiento PIR.',
+                precio: 10.00,
+                imagen: 'images/product4.jpg'
+            }
+        ]
+    }
+];
+
+// Array para almacenar los productos del carrito
+let carrito = [];
+
+// Función para mostrar productos destacados en la página de inicio
+function mostrarProductosDestacados() {
+    const contenedorProductos = document.getElementById('productos-destacados');
+    categorias.forEach(categoria => {
+        categoria.productos.forEach(producto => {
+            const divProducto = document.createElement('div');
+            divProducto.classList.add('producto');
+            divProducto.innerHTML = `
+                <img src="${producto.imagen}" alt="${producto.nombre}">
+                <h4>${producto.nombre}</h4>
+                <p>${producto.descripcion}</p>
+                <p>Precio: $${producto.precio.toFixed(2)}</p>
+                <button onclick="añadirAlCarrito(${producto.id})">Añadir al carrito</button>
+            `;
+            contenedorProductos.appendChild(divProducto);
+        });
+    });
 }
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
+// Función para añadir productos al carrito
+function añadirAlCarrito(productId) {
+    const producto = encontrarProductoPorId(productId);
+    carrito.push(producto);
+    actualizarContadorCarrito();
 }
 
-header .logo {
-    display: flex;
-    align-items: center;
+// Función para encontrar un producto por su ID
+function encontrarProductoPorId(productId) {
+    for (let categoria of categorias) {
+        for (let producto of categoria.productos) {
+            if (producto.id === productId) {
+                return producto;
+            }
+        }
+    }
 }
 
-header .logo img {
-    height: 50px;
-    margin-right: 10px;
+// Función para actualizar el contador del carrito
+function actualizarContadorCarrito() {
+    const carritoCount = document.getElementById('carrito-count');
+    carritoCount.textContent = carrito.length;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
+// Función para mostrar el carrito
+function mostrarCarrito() {
+    const contenedorCarrito = document.getElementById('carrito');
+    contenedorCarrito.innerHTML = ''; // Limpiar el carrito antes de mostrarlo
+    carrito.forEach((producto, index) => {
+        const divProducto = document.createElement('div');
+        divProducto.classList.add('producto');
+        divProducto.innerHTML = `
+            <img src="${producto.imagen}" alt="${producto.nombre}">
+            <h4>${producto.nombre}</h4>
+            <p>${producto.descripcion}</p>
+            <p>Precio: $${producto.precio.toFixed(2)}</p>
+            <button onclick="eliminarDelCarrito(${index})">Eliminar</button>
+        `;
+        contenedorCarrito.appendChild(divProducto);
+    });
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 15px;
+// Función para eliminar productos del carrito
+function eliminarDelCarrito(index) {
+    carrito.splice(index, 1);
+    mostrarCarrito();
+    actualizarContadorCarrito();
 }
 
-nav ul li a {
-    color: white;
-    text-decoration: none;
+// Función para abrir el modal de pago
+function abrirModalPago() {
+    const modal = document.getElementById('qr-container');
+    modal.style.display = 'block';
 }
 
-main {
-    padding: 20px;
+// Función para cerrar el modal de pago
+function cerrarModalPago() {
+    const modal = document.getElementById('qr-container');
+    modal.style.display = 'none';
 }
 
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background-color: #f1f1f1;
-}
+// Función de pago (al hacer clic en el botón de checkout)
+document.getElementById('checkout-btn').addEventListener('click', () => {
+    abrirModalPago();
+});
 
-.producto {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px 0;
-}
+// Mostrar productos al cargar la página
+document.addEventListener('DOMContentLoaded', mostrarProductosDestacados);
 
-#qr-container {
-    text-align: center;
-    margin-top: 20px;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #444;
-}
-
-#productos-destacados .producto img {
-    width: 100px;
-    height: auto;
+// Mostrar el carrito en la página de carrito
+if (window.location.pathname.includes('carrito.html')) {
+    mostrarCarrito();
 }
