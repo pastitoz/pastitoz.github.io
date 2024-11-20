@@ -5,6 +5,7 @@ function addToCart(id, nombre, precio) {
     const producto = { id, nombre, precio };
     carrito.push(producto);
     updateCartCount();
+    mostrarCarrito();
 }
 
 // Función para actualizar el contador del carrito
@@ -42,3 +43,6 @@ function removeFromCart(id) {
 
 // Llamada a la función para mostrar el carrito al cargar la página
 document.addEventListener('DOMContentLoaded', mostrarCarrito);
+
+// Hacer la función addToCart globalmente accesible
+window.addToCart = addToCart;
