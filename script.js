@@ -242,44 +242,27 @@ const categorias = [
     }
 ];
 
-// Función para mostrar los productos destacados en la página de inicio (index.html)
-const productosDestacados = [
-    {
-        id: 1,
-        nombre: 'Termostato Inteligente',
-        descripcion: 'Controla la temperatura de tu hogar desde tu móvil.',
-        precio: 150.00,
-        imagen: 'images/termostato-inteligente.jpg'
-    },
-    {
-        id: 2,
-        nombre: 'Cámara de Seguridad',
-        descripcion: 'Cámara de vigilancia con conexión WiFi.',
-        precio: 100.00,
-        imagen: 'images/camara-seguridad.jpg'
-    },
-    {
-        id: 3,
-        nombre: 'Bombilla Inteligente',
-        descripcion: 'Controla la iluminación desde tu smartphone.',
-        precio: 25.00,
-        imagen: 'images/bombilla-inteligente.jpg'
-    },
-    {
-        id: 4,
-        nombre: 'Asistente Virtual',
-        descripcion: 'Dispositivo para controlar tu hogar inteligente.',
-        precio: 80.00,
-        imagen: 'images/asistente-virtual.jpg'
-    },
-    {
-        id: 5,
-        nombre: 'Enchufe Inteligente',
-        descripcion: 'Controla tus dispositivos desde cualquier lugar.',
-        precio: 30.00,
-        imagen: 'images/enchufe-inteligente.jpg'
+// Carrito global (persistente en localStorage)
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+// Función para agregar un producto al carrito
+function addToCart(id, nombre, precio) {
+    // Verificar si el producto ya está en el carrito
+    const productoExistente = carrito.find(item => item.id === id);
+    if (productoExistente) {
+        productoExistente.cantidad += 1;  // Aumentar cantidad si el producto ya está en el carrito
+    } else {
+        carrito.push({ id, nombre, precio, cantidad: 1 });  // Si no está, agregarlo al carrito
     }
-];
+    updateCartCount();  // Actualizar el contador del carrito
+    localStorage.setItem('carrito', JSON.stringify(carrito));  // Guardar el carrito en localStorage
+}
+
+// Función para actualizar el contador del carrito
+function updateCartCount() {
+    const carritoCount = document.getElementById('carrito-count');
+    carritoCount.textContent = carrito.reduce((total, item) => total + item.cantidad, 0);  // Contar el total de productos
+}
 
 // Función para mostrar los productos destacados en la página de inicio (index.html)
 function mostrarProductosDestacados() {
@@ -292,7 +275,7 @@ function mostrarProductosDestacados() {
             <h4>${producto.nombre}</h4>
             <p>${producto.descripcion}</p>
             <p>Precio: $${producto.precio.toFixed(2)}</p>
-            <button class="btn-add-to-cart">Añadir al carrito</button>
+            <button class="btn-add-to-cart" onclick="addToCart(${producto.id}, '${producto.nombre}', ${producto.precio})">Añadir al carrito</button>
         `;
         contenedorDestacados.appendChild(divProducto);
     });
@@ -313,7 +296,7 @@ function mostrarCategorias() {
                 <h4>${producto.nombre}</h4>
                 <p>${producto.descripcion}</p>
                 <p>Precio: $${producto.precio.toFixed(2)}</p>
-                <button class="btn-add-to-cart">Añadir al carrito</button>
+                <button class="btn-add-to-cart" onclick="addToCart(${producto.id}, '${producto.nombre}', ${producto.precio})">Añadir al carrito</button>
             `;
             divCategoria.appendChild(divProducto);
         });
@@ -321,9 +304,47 @@ function mostrarCategorias() {
     });
 }
 
-
 // Llamada a la función para mostrar productos destacados en index.html
-document.addEventListener('DOMContentLoaded', mostrarProductosDestacados);
+document.addEventListener('DOMContentLoaded', function() {
+    mostrarProductosDestacados();
+    updateCartCount();  // Asegurar que el contador del carrito se actualice al cargar la página
+});
 
 // Llamada a la función para mostrar categorías en categorias.html
-document.addEventListener('DOMContentLoaded', mostrarCategorias);
+document.addEventListener('DOMContentLoaded', function() {
+    mostrarCategorias();
+    updateCartCount();  // Asegurar que el contador del carrito se actualice al cargar la página
+});
+
+// Función para mostrar el carrito en la página carrito.html
+function mostrarCarrito() {
+    const contenedorCarrito = document.getElementById('carrito');
+    contenedorCarrito.innerHTML = '';  // Limpiar contenedor
+    let total = 0;
+
+    carrito.forEach(item => {
+        const divItem = document.createElement('div');
+        divItem.classList.add('item-carrito');
+        divItem.innerHTML = `
+            <p>${item.nombre} - $${item.precio.toFixed(2)} x ${item.cantidad}</p>
+            <button onclick="removeFromCart(${item.id})">Eliminar</button>
+        `;
+        contenedorCarrito.appendChild(divItem);
+        total += item.precio * item.cantidad;
+    });
+
+    document.getElementById('total').textContent = `Total: $${total.toFixed(2)}`;
+}
+
+// Función para eliminar un producto del carrito
+function removeFromCart(id) {
+    carrito = carrito.filter(item => item.id !== id);  // Filtrar el producto a eliminar
+    updateCartCount();  // Actualizar el contador del carrito
+    mostrarCarrito();  // Actualizar la vista del carrito
+    localStorage.setItem('carrito', JSON.stringify(carrito));  // Guardar el carrito en localStorage
+}
+
+// Llamada a la función para mostrar el carrito cuando se carga la página carrito.html
+if (document.getElementById('carrito')) {
+    document.addEventListener('DOMContentLoaded', mostrarCarrito);
+}
