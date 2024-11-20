@@ -21,7 +21,7 @@ header {
 }
 
 header .logo img {
-    width: 150px;
+    width: 150px;  /* Ajusta el tamaño del logo según sea necesario */
 }
 
 nav ul {
