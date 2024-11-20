@@ -49,4 +49,76 @@ footer {
     border: 1px solid #ccc;
     padding: 10px;
     margin: 10px 0;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.producto img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.producto h4 {
+    font-size: 18px;
+    color: #333;
+}
+
+.producto p {
+    color: #555;
+    margin: 5px 0;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para las secciones de categorías y productos */
+#productos-destacados, #categorias {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.categoria {
+    flex: 1;
+    padding: 20px;
+    margin: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.categoria h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+#carrito-btn {
+    padding: 10px 20px;
+    background-color: #ff5722;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#carrito-btn:hover {
+    background-color: #e64a19;
+}
+
+#carrito-count {
+    font-weight: bold;
 }
