@@ -268,6 +268,10 @@ function updateCartCount() {
 // Función para mostrar los productos destacados en la página de inicio (index.html)
 function mostrarProductosDestacados() {
     const contenedorDestacados = document.getElementById('productos-destacados');
+    
+    // Limpiar el contenedor antes de agregar los productos
+    contenedorDestacados.innerHTML = '';
+
     let productosDestacados = [];
     categorias.forEach(categoria => {
         productosDestacados.push(...categoria.productos.slice(0, 1));  // Tomamos solo el primer producto de cada categoría
@@ -290,10 +294,15 @@ function mostrarProductosDestacados() {
 // Función para mostrar las categorías y productos en la página de categorías (categorias.html)
 function mostrarCategorias() {
     const contenedorCategorias = document.getElementById('categorias');
+    
+    // Limpiar el contenedor antes de agregar las categorías
+    contenedorCategorias.innerHTML = '';
+
     categorias.forEach(categoria => {
         const divCategoria = document.createElement('div');
         divCategoria.classList.add('categoria');
         divCategoria.innerHTML = `<h3>${categoria.nombre}</h3>`;
+        
         categoria.productos.forEach(producto => {
             const divProducto = document.createElement('div');
             divProducto.classList.add('producto');
@@ -306,62 +315,20 @@ function mostrarCategorias() {
             `;
             divCategoria.appendChild(divProducto);
         });
+        
         contenedorCategorias.appendChild(divCategoria);
     });
 }
 
-// Llamada a la función para mostrar productos destacados en index.html
+// Llamadas a las funciones cuando la página está completamente cargada
 document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('productos-destacados')) {
         mostrarProductosDestacados();
     }
-    updateCartCount();  // Asegurar que el contador del carrito se actualice al cargar la página
-});
-
-// Llamada a la función para mostrar categorías en categorias.html
-if (document.getElementById('categorias')) {
-    document.addEventListener('DOMContentLoaded', function() {
+    
+    if (document.getElementById('categorias')) {
         mostrarCategorias();
-        updateCartCount();  // Asegurar que el contador del carrito se actualice al cargar la página
-    });
-}
-
-// Mostrar el carrito en carrito.html
-function mostrarCarrito() {
-    const contenedorCarrito = document.getElementById('carrito');
-    contenedorCarrito.innerHTML = '';  // Limpiar contenedor
-    let total = 0;
-
-    carrito.forEach(item => {
-        const divItem = document.createElement('div');
-        divItem.classList.add('item-carrito');
-        divItem.innerHTML = `
-            <p>${item.nombre} - $${item.precio.toFixed(2)} x ${item.cantidad}</p>
-            <button onclick="removeFromCart(${item.id})">Eliminar</button>
-        `;
-        contenedorCarrito.appendChild(divItem);
-        total += item.precio * item.cantidad;
-    });
-
-    document.getElementById('total').textContent = `Total: $${total.toFixed(2)}`;
-}
-
-// Función para eliminar un producto del carrito
-function removeFromCart(id) {
-    carrito = carrito.filter(item => item.id !== id);  // Filtrar el producto a eliminar
-    updateCartCount();  // Actualizar el contador del carrito
-    mostrarCarrito();  // Actualizar la vista del carrito
-    localStorage.setItem('carrito', JSON.stringify(carrito));  // Guardar el carrito en localStorage
-}
-
-// Llamada a la función para mostrar el carrito cuando se carga la página carrito.html
-if (document.getElementById('carrito')) {
-    document.addEventListener('DOMContentLoaded', mostrarCarrito);
-}
-
-// Asegurarse de que el carrito se actualice en la página de contacto
-if (document.getElementById('carrito-count')) {
-    document.addEventListener('DOMContentLoaded', function() {
-        updateCartCount();
-    });
-}
+    }
+    
+    updateCartCount();  // Asegurarse de que el contador del carrito esté actualizado
+});
