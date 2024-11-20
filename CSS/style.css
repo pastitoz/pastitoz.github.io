@@ -1,5 +1,3 @@
-/* style.css */
-
 /* Reset de márgenes y paddings predeterminados */
 * {
     margin: 0;
@@ -12,11 +10,13 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
+    padding: 0;
+    margin: 0;
 }
 
 /* Estilo del encabezado */
 header {
-    background-color: #1e1e1e; /* Un color oscuro relacionado con tecnología */
+    background-color: #1e1e1e;
     color: white;
     padding: 20px 0;
     text-align: center;
@@ -24,6 +24,7 @@ header {
 
 header .logo img {
     width: 120px;
+    max-width: 100%;
 }
 
 /* Estilo del menú de navegación */
@@ -48,22 +49,25 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: #ff6600; /* Un color que se relacione con tecnología */
+    background-color: #ff6600;
     border-radius: 5px;
 }
 
 /* Estilo de los productos destacados */
 .productos-destacados {
     display: flex;
+    flex-wrap: wrap; /* Esto permite que las tarjetas se ajusten en pantallas pequeñas */
     justify-content: space-around;
     margin: 30px 0;
 }
 
+/* Ajuste de los productos */
 .productos .producto {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 30%;
+    margin: 10px;
     padding: 20px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -72,6 +76,7 @@ nav ul li a:hover {
 .productos .producto img {
     width: 100%;
     max-width: 200px;
+    height: auto; /* Asegurarse de que las imágenes no distorsionen */
     margin-bottom: 10px;
 }
 
@@ -95,5 +100,40 @@ nav ul li a:hover {
     transition: background-color 0.3s ease;
 }
 
-.productos .producto button:hover 
+.productos .producto button:hover {
+    background-color: #e65c00;
+}
 
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    /* Ajustar el menú para que se apile verticalmente */
+    nav ul {
+        flex-direction: column;
+    }
+
+    /* Ajustar el tamaño de las tarjetas de productos */
+    .productos .producto {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    /* Reducir el tamaño del texto en pantallas pequeñas */
+    nav ul li a {
+        font-size: 14px;
+    }
+}
+
+/* Ajustes para dispositivos muy pequeños, como móviles */
+@media (max-width: 480px) {
+    header {
+        padding: 10px 0;
+    }
+
+    header .logo img {
+        width: 100px;
+    }
+
+    nav ul {
+        gap: 10px;
+    }
+}
